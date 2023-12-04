@@ -40,6 +40,11 @@ gcloud compute networks subnets update default \
 sleep 30
 gcloud compute ssh --zone "$ZONE" "attacker-instance" --quiet
 ```
+![image](https://github.com/CloudHustlers/LEVEL_2_OCT/assets/88576711/938b472e-9562-4249-bd03-cde85b9a25d5)
+
+```cmd
+TASK_5_IP=
+```
 ```cmd
 export ZONE=us-central1-c
 sudo snap remove google-cloud-cli
@@ -59,7 +64,7 @@ gcloud container clusters create test-cluster \
 --num-nodes=1 \
 --master-ipv4-cidr "172.16.0.0/28" \
 --enable-master-authorized-networks \
---master-authorized-networks "10.138.0.0/20"
+--master-authorized-networks "$TASK_5_IP"
 sleep 30
 while true; do
     output=$(kubectl describe daemonsets container-watcher -n kube-system)
