@@ -41,7 +41,7 @@ sleep 30
 gcloud compute ssh --zone "$ZONE" "attacker-instance" --quiet
 ```
 ![image](https://github.com/CloudHustlers/LEVEL_2_OCT/assets/88576711/938b472e-9562-4249-bd03-cde85b9a25d5)
-
+### IP is in TASK 5, STEP 5 (NOTE)
 ```cmd
 TASK_5_IP=
 ```
